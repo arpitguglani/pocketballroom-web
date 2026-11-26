@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Pocket Ballroom — Brand Design Tokens (Section 5.4 of Brand Playbook)
+   Synced 1:1 with Android Theme.kt & Wear OS WearTheme.kt
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --bg-void: #08070C;
+  --bg-oled: #000000;
+  --surface-card: #13111D;
+  --surface-subtle: #171423;
+  --surface-elevated: #1C192B;
+  --border-subtle: #28233A;
+  --border-bright: #3E3659;
+
+  /* Brand & Semantic Accents */
+  --gold: #E8C574;
+  --gold-glow: #F6DF9E;
+  --gold-deep: #C9A24D;
+  --gold-soft: #352C18;
+  --on-gold: #161106;
+
+  --sapphire: #64B5FF;
+  --sapphire-soft: #132940;
+
+  --rose: #F47B8A;
+  --rose-soft: #381922;
+
+  --emerald: #52D69B;
+  --emerald-soft: #123024;
+
+  --coral: #FF6B7A;
+  --coral-soft: #38161D;
+
+  /* Typography */
+  --text-primary: #F7F4EE;
+  --text-secondary: #B7B0C9;
+  --text-muted: #817A96;
+
+  /* Fonts */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Radii & Effects */
+  --radius-card: 20px;
+  --radius-move: 16px;
+  --radius-pill: 9999px;
+  --spotlight-glow: radial-gradient(
+    circle at 50% 6%,
+    rgba(232, 197, 116, 0.20) 0%,
+    rgba(232, 197, 116, 0.06) 45%,
+    transparent 75%
+  );
+  --foil-sheen: linear-gradient(135deg, #F6DF9E 0%, #E8C574 52%, #C9A24D 100%);
+  --velvet-fade: linear-gradient(180deg, #13111D 0%, #08070C 100%);
+
+  /* Motion ("Waltz Glide & Crisp Downbeat") */
+  --ease-glide: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 200ms;
+  --dur-smooth: 300ms;
+
+  /* Layout */
+  --container-max: 1160px;
+  --nav-height: 72px;
+}

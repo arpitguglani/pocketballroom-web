@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pocket Ballroom — Know the Dance, See Your Steps, Feel Beat 1</title>
+  <meta name="description" content="The offline-first ballroom dance app for Android &amp; Wear OS. Identify the dance in 5 seconds, glance at your steps, and feel Beat 1 silently on your wrist.">
+  <link rel="canonical" href="https://pocketballroom.com/">
+  <meta name="theme-color" content="#08070C">
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pocket Ballroom">
+  <meta property="og:title" content="Pocket Ballroom — Know the Dance, See Your Steps, Feel Beat 1">
+  <meta property="og:description" content="Your quiet companion for Friday ballroom socials. Identify the dance in 5 seconds, glance at your steps, and feel Beat 1 silently on your wrist.">
+  <meta property="og:url" content="https://pocketballroom.com/">
+  <meta property="og:image" content="https://pocketballroom.com/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@pocketballroom">
+  <meta name="twitter:title" content="Pocket Ballroom — Never miss a dance.">
+  <meta name="twitter:description" content="Identify the dance in 5 seconds, glance at your 5–6 steps, and feel Beat 1 silently on your Wear OS wrist. Works 100% offline.">
+  <meta name="twitter:image" content="https://pocketballroom.com/assets/og-card.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+  <!-- Google Fonts: Fraunces (Editorial Display), Plus Jakarta Sans (UI), JetBrains Mono (Rhythm/BPM) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pocket Ballroom",
+    "operatingSystem": "Android, Wear OS",
+    "applicationCategory": "MusicApplication",
+    "description": "The offline-first ballroom dance app for Android & Wear OS. Identify the dance in 5 seconds, glance at your steps, and feel Beat 1 silently on your wrist.",
+    "url": "https://pocketballroom.com",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 1. Sticky Top Navigation -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="/" class="brand-lockup" aria-label="Pocket Ballroom Home">
+        <img src="/assets/emblem.svg" alt="" class="emblem" width="34" height="34">
+        <span class="brand-wordmark">
+          <span class="word-pocket">Pocket</span>
+          <span class="word-ballroom">Ballroom</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#dances">9 Dances</a></li>
+          <li><a href="#wear-os">Wear OS Watch</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/support/">Support</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#early-access" class="btn btn-gold btn-sm" data-cta="android" data-open-modal="android">Get Early Access</a>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 2. Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Android + Wear OS · 100% Offline-Ready</p>
+          <h1 class="hero-title">Hear the song. See your steps. <em>Feel the beat.</em></h1>
+          <p class="hero-sub">
+            Your quiet companion for Friday ballroom parties. Identify the dance in 5 seconds, glance at the 5 moves you actually know, and feel Beat 1 silently on your wrist.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#early-access" class="btn btn-gold" data-cta="android" data-open-modal="android">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="6 4 20 12 6 20 6 4"></polygon>
+              </svg>
+              Join Android &amp; Wear OS Beta
+            </a>
+            <button type="button" class="btn btn-outline" data-open-modal="ios">
+              Join iOS Waitlist
+            </button>
+          </div>
+
+          <div class="hero-meta">
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Audio never leaves your phone
+            </span>
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              No studio Wi-Fi required
+            </span>
+          </div>
+        </div>
+
+        <!-- Interactive Phone + Wear OS Watch Preview -->
+        <div class="hero-stage">
+          <div class="stage-devices">
+            <div class="phone-frame" aria-label="Interactive Pocket Ballroom Party Card preview">
+              <div class="phone-notch" aria-hidden="true"></div>
+              <div class="phone-screen">
+                <div class="party-card">
+                  <div class="party-card-top">
+                    <span class="listening-state">
+                      <span class="beat-dot" id="hero-beat-dot"></span>
+                      Beat 1 Locked
+                    </span>
+                    <span class="lane-pill" id="hero-lane">Outer Lane</span>
+                  </div>
+
+                  <div class="party-dance-name" id="hero-dance-name">Slow Waltz</div>
+                  <div class="party-metrics">
+                    <span class="tabular bpm-val" id="hero-bpm">90 BPM</span>
+                    <span class="sep">·</span>
+                    <span class="tabular" id="hero-meter">3/4</span>
+                    <span class="sep">·</span>
+                    <span>Best match you know</span>
+                  </div>
+
+                  <div class="role-toggle" role="group" aria-label="Select dance role">
+                    <button type="button" class="role-btn active-lead" id="role-lead-btn" aria-pressed="true">Leader</button>
+                    <button type="button" class="role-btn" id="role-follow-btn" aria-pressed="false">Follower</button>
+                  </div>
+
+                  <div class="steps-heading">
+                    <span>My Steps</span>
+                    <span class="know-badge">✓ Know (3)</span>
+                  </div>
+
+                  <div class="step-list" id="hero-steps"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wear OS Watch Companion -->
+            <div class="watch-frame" aria-label="Wear OS Haptic Beat Coach preview">
+              <div class="watch-ring" id="hero-watch-ring"></div>
+              <div class="watch-label">Beat Coach</div>
+              <div class="watch-beat-num" id="hero-watch-beat">1</div>
+              <div class="watch-cue" id="hero-watch-cue">1 · 2 · 3</div>
+              <div class="watch-mode">Buzz: Steps</div>
+            </div>
+          </div>
+
+          <div class="demo-switcher" role="group" aria-label="Try sample dances">
+            <button type="button" class="demo-chip active" data-demo-dance="waltz">Slow Waltz</button>
+            <button type="button" class="demo-chip" data-demo-dance="rumba">Rumba</button>
+            <button type="button" class="demo-chip" data-demo-dance="chacha">Cha-Cha</button>
+            <button type="button" class="demo-chip" data-demo-dance="foxtrot">Foxtrot</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. The Friday-Night Story (3-Card Problem -> Relief Strip) -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="eyebrow">The 5-Second Floor Rule</p>
+          <h2 class="section-title">Turn sideline hesitation into confident first steps.</h2>
+          <p class="section-lead">
+            A song starts in a dim studio, experienced dancers glide onto the floor, and every newcomer asks the same three silent questions. Pocket Ballroom answers all three without breaking the ambiance.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <article class="story-card">
+            <span class="story-step-num">01 · LISTEN</span>
+            <h3 class="story-question">“What dance is this?”</h3>
+            <p class="story-answer">
+              On-device rhythm AI listens to the room for BPM, 3/4 vs. 4/4 meter, and groove—paired with automatic Android Now Playing detection and 1-tap Share from your favorite music apps.
+            </p>
+          </article>
+
+          <article class="story-card">
+            <span class="story-step-num">02 · GLANCE</span>
+            <h3 class="story-question">“Which moves do I know?”</h3>
+            <p class="story-answer">
+              Skip 500-move syllabi. Your Party Card surfaces only the 5–6 steps you actually know—with Leader or Follower cues, your instructor’s nicknames, and muted slow-mo class clips.
+            </p>
+          </article>
+
+          <article class="story-card">
+            <span class="story-step-num">03 · STEP ON</span>
+            <h3 class="story-question">“Where is Beat 1?”</h3>
+            <p class="story-answer">
+              Feel the downbeat silently on your Wear OS wrist—tuned to real dance timing like <em>Slow–Quick–Quick</em> and <em>2–3–Cha-Cha-Cha</em>, with zero beeps and pure OLED black.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Deep-Dive Feature Showcase -->
+    <section class="section">
+      <div class="container feature-stack">
+
+        <!-- Feature 1: Instant Dance ID + Studio DJ Memory -->
+        <div class="feature-row">
+          <div>
+            <p class="feature-kicker">01 · Instant Dance ID</p>
+            <h2 class="feature-title">Know the dance—and teach it your studio DJ’s playlist.</h2>
+            <p class="feature-desc">
+              Pop-crossover tracks around 120 BPM can fit Cha-Cha, Foxtrot, Rumba, or Tango depending on the feel. Tap a single Feel Chip to settle close calls, or save a track once with Studio DJ Memory so it locks automatically next Friday.
+            </p>
+            <ul class="feature-bullets">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Curated Party Catalog:</strong> Ships with hundreds of verified ballroom &amp; pop-crossover tracks mapped to Primary and Secondary dances.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Studio DJ Memory:</strong> Tap <em>Remember for My Studio DJ</em> to store your studio’s exact song-to-dance overrides locally on your phone.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Zero-Tap &amp; Share Support:</strong> Works automatically with Pixel Now Playing or via Android Share from Spotify, YouTube, or Shazam.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-visual">
+            <div class="feature-card-panel">
+              <div class="song-match-row">
+                <div>
+                  <div class="song-title">Smooth Pop Crossover</div>
+                  <div class="song-artist tabular">122 BPM · 4/4 · Listening to the room…</div>
+                </div>
+                <span class="match-badge" id="feel-match-badge">Best match: Cha-Cha</span>
+              </div>
+
+              <div class="chips-label">Close call — how does this track feel?</div>
+              <div class="feel-chips-wrap" role="group" aria-label="Try Feel Chips">
+                <button type="button" class="feel-chip active" data-feel="chacha">Cha-Cha-Cha</button>
+                <button type="button" class="feel-chip" data-feel="swung">Swung</button>
+                <button type="button" class="feel-chip" data-feel="tango">Sharp Tango</button>
+                <button type="button" class="feel-chip" data-feel="latin">Latin</button>
+                <button type="button" class="feel-chip" data-feel="ballad">Slow Ballad</button>
+              </div>
+
+              <div class="dj-memory-bar">
+                <span id="feel-match-note">Crisp 4-&amp;-1 syncopation locked · 122 BPM</span>
+                <strong>★ Studio DJ</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2: Glanceable My Steps & Muted Class Clips -->
+        <div class="feature-row reverse">
+          <div>
+            <p class="feature-kicker">02 · My 5–6 Steps &amp; Muted Clips</p>
+            <h2 class="feature-title">Only the steps you actually know—with silent 5-second refreshers.</h2>
+            <p class="feature-desc">
+              Filter out everything you haven’t learned yet, pin tonight’s group class move with <strong>★ Tonight</strong>, and attach your own instructor recap videos. Every clip opens muted by default so you never compete with the studio DJ.
+            </p>
+            <ul class="feature-bullets">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>50 Authentic Beginner Steps:</strong> Pre-loaded across all 9 dances with tailored <span style="color: var(--sapphire);">Leader</span> and <span style="color: var(--rose);">Follower</span> cues.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Custom Studio Nicknames:</strong> Rename any pattern to match what your instructor calls it in class.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Dim-Floor Video Refresher:</strong> Auto-looping inline clips at <span class="tabular">0.5x / 0.75x / 1.0x</span> speed—muted until you tap for sound.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-visual">
+            <div class="feature-card-panel">
+              <div class="muted-player">
+                <div class="player-viewport">
+                  <div class="muted-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                    Muted for the dance floor · Tap for sound
+                  </div>
+                  <div class="player-step-title">Cross-Body Lead — Friday Class Recap</div>
+                  <div class="player-step-sub" id="speed-readout">Looping muted at 0.75x speed</div>
+                </div>
+
+                <div class="speed-row">
+                  <span style="font-size: 0.8125rem; color: var(--text-muted);">Playback Speed</span>
+                  <div class="speed-pills" role="group" aria-label="Demo playback speed">
+                    <button type="button" class="speed-pill" data-speed="0.5x">0.5x</button>
+                    <button type="button" class="speed-pill active" data-speed="0.75x">0.75x</button>
+                    <button type="button" class="speed-pill" data-speed="1.0x">1.0x</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3: Wear OS Haptic Beat Coach -->
+        <div class="feature-row" id="wear-os">
+          <div>
+            <p class="feature-kicker">03 · Wear OS Haptic Beat Coach</p>
+            <h2 class="feature-title">Feel Beat 1 silently on your wrist.</h2>
+            <p class="feature-desc">
+              Leave your phone in your pocket. Your Wear OS watch locks onto the song’s live BPM and pulses real dance-step timing directly to your wrist on a zero-glare pure OLED black canvas.
+            </p>
+            <ul class="feature-bullets">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Three Tactile Modes:</strong> Switch between <em>Buzz: Steps</em> (Slow–Quick–Quick), <em>Buzz: Beats</em>, or <em>Buzz: Beat 1</em>.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Training Wheels Auto-Fade:</strong> Gradually fades haptics after 4–8 bars once you’ve locked into the groove on your own.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Blind 1-Tap Beat 1 Snap &amp; Quick Tile:</strong> Re-align Beat 1 without looking down, nudge BPM with the crown, or launch in one swipe.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-visual">
+            <div class="oled-showcase">
+              <div class="oled-watch-dial">
+                <span class="watch-label">Wear OS · Pure OLED</span>
+                <strong style="font-size: 1.05rem; color: var(--gold);" id="oled-mode-title">Slow · Quick · Quick</strong>
+                <span style="font-size: 0.75rem; color: var(--text-secondary); max-width: 155px; line-height: 1.35;" id="oled-mode-sub">Distinct buzz lengths match your dance timing</span>
+              </div>
+
+              <div class="oled-modes" role="group" aria-label="Watch haptic modes">
+                <button type="button" class="oled-mode-pill active" data-watch-mode="steps">Buzz: Steps</button>
+                <button type="button" class="oled-mode-pill" data-watch-mode="beats">Buzz: Beats</button>
+                <button type="button" class="oled-mode-pill" data-watch-mode="beat1">Buzz: Beat 1</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. The 9 Supported Dances Grid -->
+    <section class="section" id="dances">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="eyebrow">9 Social Ballroom &amp; Club Dances</p>
+          <h2 class="section-title">Built for real Friday studio playlists.</h2>
+          <p class="section-lead">
+            Every dance includes authentic tempo ranges, meter, timing cues, Floor Craft lane guidance, and pre-loaded beginner steps for both Leaders and Followers.
+          </p>
+        </div>
+
+        <div class="dance-filters" role="group" aria-label="Filter dances by style">
+          <button type="button" class="filter-btn active" data-dance-filter="all">All 9 Dances</button>
+          <button type="button" class="filter-btn" data-dance-filter="smooth">American Smooth</button>
+          <button type="button" class="filter-btn" data-dance-filter="rhythm">American Rhythm</button>
+          <button type="button" class="filter-btn" data-dance-filter="club">Club Social</button>
+        </div>
+
+        <div class="dances-grid">
+          <!-- American Smooth -->
+          <article class="dance-card" data-category="smooth">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">American Smooth</div>
+                <h3 class="dance-card-title">Slow Waltz</h3>
+              </div>
+              <span class="lane-pill">Outer Lane</span>
+            </div>
+            <div class="dance-timing">1 · 2 · 3</div>
+            <p class="dance-desc">Flowing 3/4 smooth dance traveling counter-clockwise around the floor.</p>
+            <div class="dance-card-meta tabular">
+              <span>80–98 BPM</span>
+              <span>3/4 Meter</span>
+            </div>
+          </article>
+
+          <article class="dance-card" data-category="smooth">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">American Smooth</div>
+                <h3 class="dance-card-title">Social Foxtrot</h3>
+              </div>
+              <span class="lane-pill">Outer Lane</span>
+            </div>
+            <div class="dance-timing">Slow · Slow · Quick · Quick</div>
+            <p class="dance-desc">Classic swung big-band and jazzy pop traveling dance with relaxed walking Slows.</p>
+            <div class="dance-card-meta tabular">
+              <span>112–138 BPM</span>
+              <span>4/4 Meter</span>
+            </div>
+          </article>
+
+          <article class="dance-card" data-category="smooth">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">American Smooth</div>
+                <h3 class="dance-card-title">American Tango</h3>
+              </div>
+              <span class="lane-pill">Outer Lane</span>
+            </div>
+            <div class="dance-timing">Slow · Slow · Q · Q · Slow</div>
+            <p class="dance-desc">Dramatic, grounded marching dance with crisp staccato accents and zero rise-and-fall.</p>
+            <div class="dance-card-meta tabular">
+              <span>114–134 BPM</span>
+              <span>4/4 Meter</span>
+            </div>
+          </article>
+
+          <!-- American Rhythm -->
+          <article class="dance-card" data-category="rhythm">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">American Rhythm</div>
+                <h3 class="dance-card-title">American Rumba</h3>
+              </div>
+              <span class="lane-pill spot">Spot Dance</span>
+            </div>
+            <div class="dance-timing">Slow · Quick · Quick</div>
+            <p class="dance-desc">Romantic, smooth Latin box dance with an unhurried Slow on 1–2 and Quick–Quick on 3–4.</p>
+            <div class="dance-card-meta tabular">
+              <span>98–136 BPM</span>
+              <span>4/4 Meter</span>
+            </div>
+          </article>
+
+          <article class="dance-card" data-category="rhythm">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">American Rhythm</div>
+                <h3 class="dance-card-title">Cha-Cha</h3>
+              </div>
+              <span class="lane-pill spot">Spot Dance</span>
+            </div>
+            <div class="dance-timing">2 · 3 · Cha-Cha-Cha</div>
+            <p class="dance-desc">Crisp, playful Latin spot dance accented by the signature 4-&amp;-1 triple chassé.</p>
+            <div class="dance-card-meta tabular">
+              <span>110–132 BPM</span>
+              <span>4/4 Meter</span>
+            </div>
+          </article>
+
+          <article class="dance-card" data-category="rhythm">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">American Rhythm</div>
+                <h3 class="dance-card-title">East Coast Swing</h3>
+              </div>
+              <span class="lane-pill spot">Spot Dance</span>
+            </div>
+            <div class="dance-timing">Triple · Triple · Rock-Step</div>
+            <p class="dance-desc">Joyful, bouncy upbeat dance great for rock, pop, and classic swing tracks.</p>
+            <div class="dance-card-meta tabular">
+              <span>132–176 BPM</span>
+              <span>4/4 Meter</span>
+            </div>
+          </article>
+
+          <!-- Club Social -->
+          <article class="dance-card" data-category="club">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">Club Social</div>
+                <h3 class="dance-card-title">Salsa (On1)</h3>
+              </div>
+              <span class="lane-pill spot">Spot Dance</span>
+            </div>
+            <div class="dance-timing">1 · 2 · 3 · (hold) · 5 · 6 · 7</div>
+            <p class="dance-desc">High-energy Latin club dance breaking forward on 1 and pausing on beats 4 and 8.</p>
+            <div class="dance-card-meta tabular">
+              <span>155–210 BPM</span>
+              <span>4/4 Meter</span>
+            </div>
+          </article>
+
+          <article class="dance-card" data-category="club">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">Club Social</div>
+                <h3 class="dance-card-title">Bachata</h3>
+              </div>
+              <span class="lane-pill spot">Spot Dance</span>
+            </div>
+            <div class="dance-timing">1 · 2 · 3 · Tap</div>
+            <p class="dance-desc">Approachable side-to-side Dominican club dance with a clean hip tap on beats 4 and 8.</p>
+            <div class="dance-card-meta tabular">
+              <span>114–142 BPM</span>
+              <span>4/4 Meter</span>
+            </div>
+          </article>
+
+          <article class="dance-card" data-category="club">
+            <div class="dance-card-head">
+              <div>
+                <div class="dance-cat-label">Club Social</div>
+                <h3 class="dance-card-title">Nightclub Two-Step</h3>
+              </div>
+              <span class="lane-pill spot">Spot Dance</span>
+            </div>
+            <div class="dance-timing">Slow · Quick · Quick</div>
+            <p class="dance-desc">Effortless slow-ballad club dance built around a gentle side glide and rock-step.</p>
+            <div class="dance-card-meta tabular">
+              <span>62–88 BPM</span>
+              <span>4/4 Meter</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Privacy & Offline Trust Bar -->
+    <section class="section">
+      <div class="container">
+        <div class="trust-bar">
+          <div class="trust-item">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3>On-Device Audio AI</h3>
+              <p>Room audio is analyzed live in memory and never recorded, stored, or uploaded. Read our <a href="/privacy/" style="color: var(--gold); text-decoration: underline;">Privacy Policy</a>.</p>
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+            </div>
+            <div>
+              <h3>Works Without Studio Wi-Fi</h3>
+              <p>Your rhythm engine, song catalog, personal steps, and Wear OS sync all work cleanly offline in basement ballrooms.</p>
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div>
+              <h3>Free Core Experience</h3>
+              <p>No account walls, no loud ads, and no glare—just a calm, respectful helper built by social ballroom dancers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. For Studio Instructors & Dance Communities -->
+    <section class="section">
+      <div class="container">
+        <div class="studio-banner">
+          <div>
+            <p class="eyebrow">For Studio Instructors &amp; Party Hosts</p>
+            <h2>Help your newcomers stay on the floor longer.</h2>
+            <p>
+              Pocket Ballroom reinforces <em>your</em> syllabus and <em>your</em> studio DJ’s playlist—students can use your exact step nicknames, pin tonight’s group class moves, and check muted recaps without disrupting the room.
+            </p>
+          </div>
+          <button type="button" class="btn btn-outline" data-open-modal="studio">
+            Get Studio Welcome Kit
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ Accordion -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header centered">
+          <p class="eyebrow">Questions</p>
+          <h2 class="section-title">Everything you want to know before Friday night.</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item" data-open="true">
+            <button type="button" class="faq-trigger" aria-expanded="true">
+              <span>Do I need a Wear OS smartwatch to use Pocket Ballroom?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-panel">
+              Not at all. The Android phone app works completely standalone with instant Dance ID, Feel Chips, Studio DJ Memory, your Leader/Follower steps, and muted slow-mo class clips. Pairing a Wear OS 3+ watch simply adds the silent wrist Haptic Beat Coach and 1-swipe Quick Tile.
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>Does it really work without Wi-Fi or cell service in a studio?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-panel">
+              Yes. Both the on-device rhythm analyzer and the built-in song catalog run 100% locally on your phone, and your known steps + local video clips stay on your device. Even the phone-to-watch sync works over Bluetooth without internet.
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>Which phones support automatic “Now Playing” song detection?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-panel">
+              Google Pixel phones with Android’s offline <em>Now Playing</em> feature can automatically feed recognized songs straight to Pocket Ballroom with zero taps once you grant Notification Access. On any other Android phone, you can use our built-in on-device rhythm listener or tap <strong>Share → Pocket Ballroom</strong> from Shazam, Google Song Search, Spotify, or YouTube.
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>Is Pocket Ballroom coming to iOS and Apple Watch?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-panel">
+              Yes—iOS and Apple Watch are next on our roadmap, bringing the same Midnight Ballroom design, on-device rhythm ID, and silent wrist haptics via Apple Watch. Join the iOS Waitlist above to get an early TestFlight invite.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="early-access">
+      <div class="container">
+        <img src="/assets/emblem.svg" alt="" class="emblem-lg" width="60" height="60">
+        <h2>Never miss a dance.</h2>
+        <p>In your pocket. On your wrist. Ready for Beat 1 at this Friday’s social.</p>
+        <div class="hero-ctas" style="justify-content: center; margin-bottom: 0;">
+          <a href="#early-access" class="btn btn-gold" data-cta="android" data-open-modal="android">Join Android &amp; Wear OS Beta</a>
+          <button type="button" class="btn btn-outline" data-open-modal="ios">Join iOS Waitlist</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand-lockup">
+        <img src="/assets/emblem.svg" alt="" class="emblem" width="28" height="28">
+        <span class="brand-wordmark">
+          <span class="word-pocket">Pocket</span>
+          <span class="word-ballroom">Ballroom</span>
+        </span>
+      </div>
+
+      <div class="footer-links">
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/support/">Support</a>
+        <a href="mailto:hello@pocketballroom.com">hello@pocketballroom.com</a>
+        <a href="https://instagram.com/pocketballroom" target="_blank" rel="noopener noreferrer">@pocketballroom</a>
+      </div>
+
+      <div>© <span id="year">2026</span> Pocket Ballroom</div>
+    </div>
+  </footer>
+
+  <!-- Early Access / iOS Waitlist Modal -->
+  <div class="modal-backdrop" id="waitlist-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close" id="modal-close-btn" aria-label="Close dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2 class="modal-title" id="modal-title">Join Android &amp; Wear OS Early Access</h2>
+      <p class="modal-sub" id="modal-sub">Get invited to our Google Play closed beta before Friday’s social.</p>
+
+      <form id="waitlist-form">
+        <div class="form-group">
+          <label class="form-label" for="waitlist-platform">I’m interested in</label>
+          <select class="form-select" id="waitlist-platform" name="platform">
+            <option value="Android + Wear OS Beta">Android + Wear OS Beta</option>
+            <option value="iOS & Apple Watch Waitlist">iOS &amp; Apple Watch Waitlist</option>
+            <option value="Studio Instructor / Host">Studio Instructor / Host</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="waitlist-email">Email address</label>
+          <input class="form-input" id="waitlist-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="waitlist-studio">Studio or city (optional)</label>
+          <input class="form-input" id="waitlist-studio" name="studio" type="text" placeholder="e.g., Friday Social · Seattle">
+        </div>
+
+        <button type="submit" class="btn btn-gold" style="width: 100%;">Request Invite</button>
+        <div class="form-status" id="waitlist-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="/config.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
