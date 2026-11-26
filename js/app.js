@@ -1,15 +1,25 @@
 (() => {
   const cfg = window.POCKET_BALLROOM_CONFIG || {};
 
-  /* ---------- Interactive Hero Dance Presets ---------- */
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* ---------- Interactive Hero v1.6.1 Listen Preview ---------- */
   const DEMO_DANCES = {
     waltz: {
+      songTitle: "Can't Help Falling in Love",
+      songArtist: "Elvis Presley",
       name: "Slow Waltz",
+      shortName: "Waltz",
       bpm: 90,
       meter: "3/4",
       beats: 3,
-      lane: "Outer Lane",
-      isSpot: false,
+      lane: "Travel",
+      confidence: "96%",
+      isLikely: false,
+      altDanceKey: "foxtrot",
+      altLabel: "★ Foxtrot",
+      octaveLabel: "Double speed",
       watchCue: "1 · 2 · 3",
       steps: [
         {
@@ -33,12 +43,19 @@
       ]
     },
     rumba: {
+      songTitle: "Stand by Me",
+      songArtist: "Ben E. King",
       name: "American Rumba",
-      bpm: 112,
+      shortName: "Rumba",
+      bpm: 118,
       meter: "4/4",
       beats: 4,
-      lane: "Spot Dance",
-      isSpot: true,
+      lane: "In place",
+      confidence: "94%",
+      isLikely: false,
+      altDanceKey: "chacha",
+      altLabel: "★ Cha-Cha",
+      octaveLabel: "Half speed",
       watchCue: "Slow · Q · Q",
       steps: [
         {
@@ -62,12 +79,19 @@
       ]
     },
     chacha: {
+      songTitle: "Mambo No. 5",
+      songArtist: "Lou Bega",
       name: "Cha-Cha",
-      bpm: 122,
+      shortName: "Cha-Cha",
+      bpm: 126,
       meter: "4/4",
       beats: 4,
-      lane: "Spot Dance",
-      isSpot: true,
+      lane: "In place",
+      confidence: "91%",
+      isLikely: false,
+      altDanceKey: "rumba",
+      altLabel: "★ Rumba",
+      octaveLabel: "Half speed",
       watchCue: "2 · 3 · Cha-Cha",
       steps: [
         {
@@ -91,12 +115,19 @@
       ]
     },
     foxtrot: {
+      songTitle: "It Had to Be You",
+      songArtist: "Frank Sinatra",
       name: "Social Foxtrot",
-      bpm: 124,
+      shortName: "Foxtrot",
+      bpm: 133,
       meter: "4/4",
       beats: 4,
-      lane: "Outer Lane",
-      isSpot: false,
+      lane: "Travel",
+      confidence: "72% · Likely",
+      isLikely: true,
+      altDanceKey: "waltz",
+      altLabel: "★ Waltz",
+      octaveLabel: "Half speed",
       watchCue: "S · S · Q · Q",
       steps: [
         {
@@ -118,40 +149,178 @@
           follow: "Keep gaze down Line of Dance, glide smoothly."
         }
       ]
+    },
+    salsa: {
+      songTitle: "Vivir Mi Vida",
+      songArtist: "Marc Anthony",
+      name: "Salsa (On1)",
+      shortName: "Salsa",
+      bpm: 180,
+      meter: "4/4",
+      beats: 4,
+      lane: "In place",
+      confidence: "95%",
+      isLikely: false,
+      altDanceKey: "chacha",
+      altLabel: "★ Cha-Cha",
+      octaveLabel: "Half speed",
+      watchCue: "1·2·3 · 5·6·7",
+      steps: [
+        {
+          name: "On1 Basic",
+          tonight: true,
+          lead: "LF fwd on 1, replace 2, close 3 (hold 4); RF back 5–6–7.",
+          follow: "RF back on 1, replace 2, close 3 (hold 4); LF fwd 5–6–7."
+        },
+        {
+          name: "Cross-Body Lead",
+          tonight: false,
+          lead: "1–2–3 open side lane · 5–6–7 guide partner across slot.",
+          follow: "1–2–3 step fwd into slot · 5–6–7 walk across and pivot."
+        },
+        {
+          name: "Right Underarm Turn",
+          tonight: false,
+          lead: "Raise L hand on 3, keep compact basic while partner turns 5–6–7.",
+          follow: "Step fwd on 5, pivot right on 6, finish facing on 7."
+        }
+      ]
     }
   };
 
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let currentDanceKey = "waltz";
   let currentRole = "lead";
   let currentBeat = 1;
+  let isBeatPlaying = !prefersReducedMotion;
   let beatTimer = null;
+  let heroOctaveScaled = false;
+  const savedSongs = new Set(["rumba"]);
 
+  const elSongTitle = document.getElementById("hero-song-title");
+  const elSongArtist = document.getElementById("hero-song-artist");
+  const elBookmarkBtn = document.getElementById("hero-bookmark-btn");
   const elDanceName = document.getElementById("hero-dance-name");
-  const elBpm = document.getElementById("hero-bpm");
-  const elMeter = document.getElementById("hero-meter");
-  const elLane = document.getElementById("hero-lane");
+  const elSubline = document.getElementById("hero-subline");
+  const elConfidence = document.getElementById("hero-confidence");
+  const elAltPill = document.getElementById("hero-alt-pill");
+  const elAdjustBtn = document.getElementById("hero-adjust-btn");
+  const elAdjustDrawer = document.getElementById("hero-adjust-drawer");
+  const elOctaveBtn = document.getElementById("hero-octave-btn");
+  const elMovesHeading = document.getElementById("hero-moves-heading");
   const elSteps = document.getElementById("hero-steps");
-  const elBeatDot = document.getElementById("hero-beat-dot");
+
+  const elBeatBar = document.querySelector(".beat-bar");
+  const elBeatToggle = document.getElementById("hero-beat-toggle");
+  const elBeatDots = document.getElementById("hero-beat-dots");
+  const elBpm = document.getElementById("hero-bpm");
+  const elSnapBtn = document.getElementById("hero-snap-btn");
+
   const elWatchRing = document.getElementById("hero-watch-ring");
   const elWatchBeat = document.getElementById("hero-watch-beat");
   const elWatchCue = document.getElementById("hero-watch-cue");
   const roleLeadBtn = document.getElementById("role-lead-btn");
   const roleFollowBtn = document.getElementById("role-follow-btn");
 
+  function activeHeroBpm() {
+    const d = DEMO_DANCES[currentDanceKey];
+    if (!heroOctaveScaled) return d.bpm;
+    return d.octaveLabel === "Double speed" ? Math.round(d.bpm * 1.5) : Math.round(d.bpm / 2);
+  }
+
+  function renderBeatDots(totalBeats, beatNumber) {
+    if (!elBeatDots) return;
+    if (elBeatDots.children.length !== totalBeats) {
+      elBeatDots.innerHTML = Array.from({ length: totalBeats }, () => '<span class="beat-dot-pip"></span>').join("");
+    }
+    Array.from(elBeatDots.children).forEach((pip, idx) => {
+      const isCurrent = idx + 1 === beatNumber;
+      pip.classList.toggle("is-active", isCurrent);
+      pip.classList.toggle("is-beat1", isCurrent && beatNumber === 1);
+    });
+  }
+
+  function renderBeatDisplay(beatNumber) {
+    const d = DEMO_DANCES[currentDanceKey];
+    const isBeat1 = beatNumber === 1;
+    renderBeatDots(d.beats, beatNumber);
+    if (elWatchBeat) {
+      elWatchBeat.textContent = String(beatNumber);
+      elWatchBeat.classList.toggle("is-beat1", isBeat1);
+    }
+    if (elWatchRing) {
+      elWatchRing.classList.remove("pulse-beat1", "pulse-tick");
+      void elWatchRing.offsetWidth;
+      if (isBeatPlaying) {
+        elWatchRing.classList.add(isBeat1 ? "pulse-beat1" : "pulse-tick");
+      }
+    }
+  }
+
+  function syncBeatControls() {
+    if (elBeatBar) elBeatBar.classList.toggle("is-paused", !isBeatPlaying);
+    if (elBeatToggle) {
+      elBeatToggle.setAttribute("aria-label", isBeatPlaying ? "Pause beat coach" : "Play beat coach");
+    }
+  }
+
+  function startBeatPulse() {
+    if (beatTimer) clearInterval(beatTimer);
+    beatTimer = null;
+    syncBeatControls();
+
+    const d = DEMO_DANCES[currentDanceKey];
+    currentBeat = 1;
+    renderBeatDisplay(currentBeat);
+    if (!isBeatPlaying) return;
+
+    const bpm = activeHeroBpm();
+    const intervalMs = Math.round(60000 / bpm);
+    beatTimer = setInterval(() => {
+      currentBeat = currentBeat >= d.beats ? 1 : currentBeat + 1;
+      renderBeatDisplay(currentBeat);
+    }, intervalMs);
+  }
+
   function renderHeroDance() {
     if (!elDanceName) return;
     const d = DEMO_DANCES[currentDanceKey];
+    const bpm = activeHeroBpm();
+
+    if (elSongTitle) elSongTitle.textContent = d.songTitle;
+    if (elSongArtist) elSongArtist.textContent = d.songArtist;
+    if (elBookmarkBtn) {
+      const isSaved = savedSongs.has(currentDanceKey);
+      elBookmarkBtn.classList.toggle("saved", isSaved);
+      elBookmarkBtn.setAttribute("aria-pressed", String(isSaved));
+      elBookmarkBtn.setAttribute(
+        "aria-label",
+        isSaved ? `Saved ${d.songTitle} for My Studio` : `Save ${d.songTitle} to Studio Memory`
+      );
+    }
+
     elDanceName.textContent = d.name;
-    elBpm.textContent = `${d.bpm} BPM`;
-    elMeter.textContent = d.meter;
-    elLane.textContent = d.lane;
-    elLane.classList.toggle("spot", d.isSpot);
-    elWatchCue.textContent = d.watchCue;
+    if (elSubline) elSubline.textContent = `${d.watchCue} · ${d.lane} · ${bpm} BPM`;
+    if (elConfidence) {
+      elConfidence.textContent = d.confidence;
+      elConfidence.classList.toggle("is-likely", d.isLikely);
+    }
+    if (elAltPill) {
+      elAltPill.textContent = d.altLabel;
+      elAltPill.dataset.targetDance = d.altDanceKey;
+    }
+    if (elOctaveBtn) {
+      elOctaveBtn.textContent = d.octaveLabel;
+      elOctaveBtn.classList.toggle("active", heroOctaveScaled);
+    }
+    if (elMovesHeading) elMovesHeading.textContent = `Your ${d.shortName} Moves`;
+    if (elBpm) elBpm.textContent = `${bpm} BPM`;
+    if (elWatchCue) elWatchCue.textContent = d.watchCue;
 
     elSteps.innerHTML = d.steps
       .map(
         (s) => `
-        <div class="step-item">
+        <div class="step-item${s.tonight ? " is-tonight" : ""}">
           <div class="step-item-head">
             <span class="step-name">${s.name}</span>
             ${s.tonight ? '<span class="tonight-tag">★ Tonight</span>' : ""}
@@ -166,31 +335,11 @@
     roleLeadBtn.setAttribute("aria-pressed", String(currentRole === "lead"));
     roleFollowBtn.setAttribute("aria-pressed", String(currentRole === "follow"));
 
+    document.querySelectorAll("[data-demo-dance]").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.demoDance === currentDanceKey);
+    });
+
     startBeatPulse();
-  }
-
-  function startBeatPulse() {
-    if (beatTimer) clearInterval(beatTimer);
-    if (!elWatchBeat) return;
-    const d = DEMO_DANCES[currentDanceKey];
-    const intervalMs = Math.round(60000 / d.bpm);
-    currentBeat = 1;
-
-    const tick = () => {
-      const isBeat1 = currentBeat === 1;
-      elWatchBeat.textContent = String(currentBeat);
-      elWatchBeat.classList.toggle("is-beat1", isBeat1);
-      if (elBeatDot) elBeatDot.classList.toggle("beat-1", isBeat1);
-      if (elWatchRing) {
-        elWatchRing.classList.remove("pulse-beat1", "pulse-tick");
-        void elWatchRing.offsetWidth;
-        elWatchRing.classList.add(isBeat1 ? "pulse-beat1" : "pulse-tick");
-      }
-      currentBeat = currentBeat >= d.beats ? 1 : currentBeat + 1;
-    };
-
-    tick();
-    beatTimer = setInterval(tick, intervalMs);
   }
 
   if (roleLeadBtn && roleFollowBtn) {
@@ -207,37 +356,118 @@
   document.querySelectorAll("[data-demo-dance]").forEach((btn) => {
     btn.addEventListener("click", () => {
       currentDanceKey = btn.dataset.demoDance;
-      document.querySelectorAll("[data-demo-dance]").forEach((b) => {
-        b.classList.toggle("active", b === btn);
-      });
+      heroOctaveScaled = false;
       renderHeroDance();
     });
   });
 
+  if (elAltPill) {
+    elAltPill.addEventListener("click", () => {
+      const target = elAltPill.dataset.targetDance;
+      if (target && DEMO_DANCES[target]) {
+        currentDanceKey = target;
+        heroOctaveScaled = false;
+        renderHeroDance();
+      }
+    });
+  }
+
+  if (elBookmarkBtn) {
+    elBookmarkBtn.addEventListener("click", () => {
+      if (savedSongs.has(currentDanceKey)) {
+        savedSongs.delete(currentDanceKey);
+      } else {
+        savedSongs.add(currentDanceKey);
+      }
+      renderHeroDance();
+    });
+  }
+
+  if (elAdjustBtn && elAdjustDrawer) {
+    elAdjustBtn.addEventListener("click", () => {
+      const expanded = elAdjustBtn.getAttribute("aria-expanded") === "true";
+      elAdjustBtn.setAttribute("aria-expanded", String(!expanded));
+      elAdjustDrawer.hidden = expanded;
+    });
+  }
+
+  if (elOctaveBtn) {
+    elOctaveBtn.addEventListener("click", () => {
+      heroOctaveScaled = !heroOctaveScaled;
+      renderHeroDance();
+    });
+  }
+
+  if (elBeatToggle) {
+    elBeatToggle.addEventListener("click", () => {
+      isBeatPlaying = !isBeatPlaying;
+      startBeatPulse();
+    });
+  }
+
+  if (elSnapBtn) {
+    elSnapBtn.addEventListener("click", () => {
+      isBeatPlaying = true;
+      startBeatPulse();
+    });
+  }
+
   renderHeroDance();
 
-  /* ---------- Interactive Feel Chips Demo (Feature 1) ---------- */
+  /* ---------- Interactive Feel Chips, Octave & Studio Memory (Feature 1) ---------- */
   const FEEL_MAP = {
-    chacha: { badge: "Best match: Cha-Cha", note: "Crisp 4-&-1 syncopation locked · 122 BPM" },
-    swung: { badge: "Best match: Social Foxtrot", note: "Swung jazz groove · Outer Line of Dance" },
-    tango: { badge: "Best match: American Tango", note: "Sharp staccato accents · Compact Tango Hold" },
-    latin: { badge: "Best match: American Rumba", note: "Smooth romantic Latin box · Slow–Quick–Quick" },
-    ballad: { badge: "Best match: Nightclub Two-Step", note: "Half-time slow ballad sway · 61 BPM feel" }
+    chacha: { badge: "Cha-Cha · 88%", note: "Crisp 4-&-1 syncopation locked" },
+    swung: { badge: "Foxtrot · 72% Likely", note: "Swung jazz groove · Outer Lane" },
+    tango: { badge: "Tango · 84%", note: "Sharp staccato accents · Compact Hold" },
+    latin: { badge: "Rumba · 86%", note: "Smooth romantic Latin box · Slow–Q–Q" },
+    ballad: { badge: "NC 2-Step · 79%", note: "Half-time slow ballad sway" }
   };
+
+  let f1Feel = "chacha";
+  let f1Octave = 1;
+  let f1Saved = false;
 
   const feelBadge = document.getElementById("feel-match-badge");
   const feelNote = document.getElementById("feel-match-note");
+  const f1BpmReadout = document.getElementById("f1-bpm-readout");
+  const f1BookmarkBtn = document.getElementById("f1-bookmark-btn");
+  const f1BookmarkLabel = document.getElementById("f1-bookmark-label");
+
+  function renderFeature1() {
+    const info = FEEL_MAP[f1Feel];
+    const bpm = f1Octave === 0.5 ? 61 : 122;
+    if (feelBadge) feelBadge.textContent = info.badge;
+    if (feelNote) feelNote.textContent = `${info.note} · ${bpm} BPM`;
+    if (f1BpmReadout) f1BpmReadout.textContent = `${bpm} BPM · 4/4 · Groove Analysis`;
+  }
+
   document.querySelectorAll("[data-feel]").forEach((chip) => {
     chip.addEventListener("click", () => {
-      const info = FEEL_MAP[chip.dataset.feel];
-      if (!info) return;
+      if (!FEEL_MAP[chip.dataset.feel]) return;
+      f1Feel = chip.dataset.feel;
       document.querySelectorAll("[data-feel]").forEach((c) => c.classList.toggle("active", c === chip));
-      if (feelBadge) feelBadge.textContent = info.badge;
-      if (feelNote) feelNote.textContent = info.note;
+      renderFeature1();
     });
   });
 
-  /* ---------- Interactive Speed Pills Demo (Feature 2) ---------- */
+  document.querySelectorAll("[data-octave]").forEach((pill) => {
+    pill.addEventListener("click", () => {
+      f1Octave = Number(pill.dataset.octave);
+      document.querySelectorAll("[data-octave]").forEach((p) => p.classList.toggle("active", p === pill));
+      renderFeature1();
+    });
+  });
+
+  if (f1BookmarkBtn && f1BookmarkLabel) {
+    f1BookmarkBtn.addEventListener("click", () => {
+      f1Saved = !f1Saved;
+      f1BookmarkBtn.classList.toggle("saved", f1Saved);
+      f1BookmarkBtn.setAttribute("aria-pressed", String(f1Saved));
+      f1BookmarkLabel.textContent = f1Saved ? "Saved for My Studio" : "Save for My Studio";
+    });
+  }
+
+  /* ---------- Interactive Speed & Role Cue Demo (Feature 2) ---------- */
   const speedReadout = document.getElementById("speed-readout");
   document.querySelectorAll("[data-speed]").forEach((pill) => {
     pill.addEventListener("click", () => {
@@ -246,23 +476,81 @@
     });
   });
 
-  /* ---------- Interactive Watch Haptic Mode Demo (Feature 3) ---------- */
+  const f2CueText = document.getElementById("f2-cue-text");
+  const F2_CUES = {
+    lead: "1–2–3 open side lane · 5–6–7 guide partner across slot.",
+    follow: "1–2–3 step fwd into slot · 5–6–7 walk across and pivot."
+  };
+  document.querySelectorAll("[data-f2-role]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const role = btn.dataset.f2Role;
+      document.querySelectorAll("[data-f2-role]").forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle("active-lead", active && role === "lead");
+        b.classList.toggle("active-follow", active && role === "follow");
+        b.setAttribute("aria-pressed", String(active));
+      });
+      if (f2CueText && F2_CUES[role]) f2CueText.textContent = F2_CUES[role];
+    });
+  });
+
+  /* ---------- Interactive Watch Haptic Mode & Training Wheels Demo (Feature 3) ---------- */
   const WATCH_MODES = {
-    steps: { title: "Slow · Quick · Quick", sub: "Distinct buzz lengths match your dance timing" },
-    beats: { title: "1 · 2 · 3 · 4", sub: "Heavy Beat 1 double-thump + light measure ticks" },
-    beat1: { title: "Beat 1 Only", sub: "Minimal single pulse at the top of each bar" }
+    steps: {
+      title: "Slow · Quick · Quick",
+      sub: "Distinct buzz lengths match your dance timing",
+      pips: ["is-beat1", "is-slow", "is-accent", "is-accent"]
+    },
+    beats: {
+      title: "1 · 2 · 3 · 4",
+      sub: "Heavy Beat 1 double-thump + light measure ticks",
+      pips: ["is-beat1", "is-accent", "is-accent", "is-accent"]
+    },
+    beat1: {
+      title: "Beat 1 Only",
+      sub: "Minimal single pulse at the top of each bar",
+      pips: ["is-beat1", "", "", ""]
+    }
   };
   const oledTitle = document.getElementById("oled-mode-title");
   const oledSub = document.getElementById("oled-mode-sub");
+  const oledRhythmBar = document.getElementById("oled-rhythm-bar");
+  const oledFadeToggle = document.getElementById("oled-fade-toggle");
+  const oledFadeLabel = document.getElementById("oled-fade-label");
+  let f3FadeOn = false;
+
+  function renderRhythmBar(modeKey) {
+    if (!oledRhythmBar) return;
+    const info = WATCH_MODES[modeKey];
+    if (!info) return;
+    oledRhythmBar.innerHTML = info.pips
+      .map((cls) => `<span class="rhythm-pip${cls ? " " + cls : ""}"></span>`)
+      .join("");
+  }
+
   document.querySelectorAll("[data-watch-mode]").forEach((pill) => {
     pill.addEventListener("click", () => {
-      const info = WATCH_MODES[pill.dataset.watchMode];
+      const key = pill.dataset.watchMode;
+      const info = WATCH_MODES[key];
       if (!info) return;
       document.querySelectorAll("[data-watch-mode]").forEach((p) => p.classList.toggle("active", p === pill));
       if (oledTitle) oledTitle.textContent = info.title;
       if (oledSub) oledSub.textContent = info.sub;
+      renderRhythmBar(key);
     });
   });
+  renderRhythmBar("steps");
+
+  if (oledFadeToggle && oledFadeLabel) {
+    oledFadeToggle.addEventListener("click", () => {
+      f3FadeOn = !f3FadeOn;
+      oledFadeToggle.classList.toggle("active", f3FadeOn);
+      oledFadeToggle.setAttribute("aria-pressed", String(f3FadeOn));
+      oledFadeLabel.textContent = f3FadeOn
+        ? "Training Wheels: Fades softly after 8 bars (On)"
+        : "Training Wheels: Fade after 8 bars (Off)";
+    });
+  }
 
   /* ---------- 9 Dances Category Filter ---------- */
   const danceCards = document.querySelectorAll(".dance-card[data-category]");
@@ -274,16 +562,6 @@
         const show = filter === "all" || card.dataset.category === filter;
         card.classList.toggle("hidden", !show);
       });
-    });
-  });
-
-  /* ---------- FAQ Accordion ---------- */
-  document.querySelectorAll(".faq-trigger").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const item = trigger.closest(".faq-item");
-      const isOpen = item.getAttribute("data-open") === "true";
-      item.setAttribute("data-open", String(!isOpen));
-      trigger.setAttribute("aria-expanded", String(!isOpen));
     });
   });
 
@@ -303,7 +581,7 @@
     });
   }
 
-  /* ---------- Early Access / Google Play CTA & Waitlist Modal ---------- */
+  /* ---------- Early Access / Google Play CTA & Native <dialog> Modal ---------- */
   const modal = document.getElementById("waitlist-modal");
   const modalClose = document.getElementById("modal-close-btn");
   const modalTitle = document.getElementById("modal-title");
@@ -312,7 +590,6 @@
   const waitlistForm = document.getElementById("waitlist-form");
   const formStatus = document.getElementById("waitlist-status");
 
-  // If GOOGLE_PLAY_URL is populated in config.js, turn Android CTAs into direct Play Store links.
   if (cfg.GOOGLE_PLAY_URL) {
     document.querySelectorAll("[data-cta='android']").forEach((el) => {
       el.textContent = "Get it on Google Play";
@@ -343,14 +620,7 @@
       formStatus.className = "form-status";
       formStatus.textContent = "";
     }
-    modal.setAttribute("aria-hidden", "false");
-    const emailInput = document.getElementById("waitlist-email");
-    if (emailInput) setTimeout(() => emailInput.focus(), 60);
-  }
-
-  function closeModal() {
-    if (!modal) return;
-    modal.setAttribute("aria-hidden", "true");
+    modal.showModal();
   }
 
   document.querySelectorAll("[data-open-modal]").forEach((trigger) => {
@@ -361,14 +631,30 @@
     });
   });
 
-  if (modalClose) modalClose.addEventListener("click", closeModal);
+  if (modalClose && modal) {
+    modalClose.addEventListener("click", () => modal.close("cancel"));
+  }
+
   if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModal();
+    modal.addEventListener("close", () => {
+      modal.returnValue = "";
     });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") closeModal();
-    });
+
+    // Fallback light-dismiss for browsers without <dialog closedby="any"> (e.g., Safari)
+    if (!("closedBy" in HTMLDialogElement.prototype)) {
+      const outside = (e) => {
+        const r = modal.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      };
+      let pressedOutside = false;
+      modal.addEventListener("pointerdown", (e) => {
+        pressedOutside = outside(e);
+      });
+      modal.addEventListener("pointerup", (e) => {
+        if (pressedOutside && outside(e)) modal.close("backdrop");
+        pressedOutside = false;
+      });
+    }
   }
 
   if (waitlistForm) {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Pocket Ballroom</title>
-  <meta name="description" content="Pocket Ballroom Privacy Policy. Raw room audio is never recorded, saved, or uploaded. Minimal permissions: Microphone, Vibration, and Internet.">
+  <meta name="description" content="Pocket Ballroom Privacy Policy. On-device neural rhythm AI and privacy-safe one-way song signatures—raw room audio is never recorded, saved, or uploaded.">
   <link rel="canonical" href="https://pocketballroom.com/privacy/">
   <meta name="theme-color" content="#08070C">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -46,43 +46,50 @@
 
     <article class="container prose">
       <div class="summary-box">
-        <strong>The Short Version:</strong> Pocket Ballroom is built offline-first with minimal permissions (<code>RECORD_AUDIO</code>, <code>VIBRATE</code>, and <code>INTERNET</code>—no Notification Access, no account required, no ad trackers). When you tap <em>Listen</em>, <strong>raw room audio is never recorded, saved, or uploaded</strong>. On-device AI analyzes rhythm locally in memory, and optional online song matching sends only a non-reversible one-way acoustic signature.
+        <strong>The Short Version:</strong> Pocket Ballroom is built offline-first and privacy-first. When you tap <em>Listen</em>, microphone audio is analyzed in volatile memory by our on-device neural rhythm and style models—<strong>raw room audio is never recorded, saved, or uploaded</strong>. When online, song identification uses compact one-way mathematical signatures via Apple ShazamKit. We do not sell personal data, run ad trackers, or request Notification Access.
       </div>
 
-      <h2>1. Microphone Permission (<code>RECORD_AUDIO</code>) &amp; On-Device Audio AI</h2>
+      <h2>1. Microphone Permission (<code>RECORD_AUDIO</code>)</h2>
       <p>
-        Pocket Ballroom requests microphone access solely when you actively start listening to music on your phone or Wear OS watch so our on-device neural rhythm and style models can estimate tempo (BPM), time signature (3/4 vs. 4/4), ballroom style, and Beat 1 timing.
+        Pocket Ballroom requests microphone access solely when you actively start listening to music on your phone or Wear OS watch so our on-device rhythm and style engines (<code>Beat This!</code> and <code>BallroomStyleNet</code>) can estimate tempo (BPM), time signature (3/4 vs. 4/4), musical groove, and Beat 1 timing.
       </p>
       <ul>
-        <li>All rhythm, beat, and style inference runs <strong>100% locally on your device</strong> in volatile RAM.</li>
-        <li>Raw room audio is <strong>never written to disk, never saved, and never uploaded</strong> to Pocket Ballroom servers or any third party.</li>
+        <li>All rhythm, Beat 1, and style analysis happens <strong>100% locally on your device</strong> in temporary RAM.</li>
+        <li>When you tap <em>Listen</em> on a paired Wear OS watch, a brief 6-second open-air audio clip is streamed strictly point-to-point over local Bluetooth (<code>Wear OS ChannelClient</code>) to your own paired phone in volatile RAM for local neural analysis and one-way ShazamKit signature lookup—never written to disk and never uploaded as raw audio.</li>
+        <li>Raw room audio is <strong>never written to disk, never recorded, and never uploaded</strong> to Pocket Ballroom servers or third parties.</li>
         <li>You can stop listening at any time with a single tap, immediately releasing the microphone.</li>
       </ul>
 
-      <h2>2. Privacy-Safe Song Identification (Apple ShazamKit)</h2>
+      <h2>2. Parallel Song Identification (Apple ShazamKit)</h2>
       <p>
-        When your device has an internet connection and you tap <em>Listen</em>, Pocket Ballroom may convert a brief snippet of the live audio stream on-device into a <strong>non-reversible, one-way mathematical acoustic signature</strong> (via Apple’s ShazamKit SDK) and send only that signature over HTTPS to identify the song title and artist.
+        When an internet connection is available during active listening, Pocket Ballroom generates a compact, <strong>one-way mathematical audio signature</strong> locally on your device using Apple ShazamKit to match the song title and artist.
       </p>
       <ul>
-        <li>Raw audio and voices cannot be reconstructed from a one-way acoustic signature.</li>
-        <li>Matched song titles are looked up locally against Pocket Ballroom’s bundled 18,090-song offline dance catalog and your personal Studio Memory.</li>
-        <li>When offline (no studio Wi-Fi or cell signal), Pocket Ballroom automatically uses its 100% on-device rhythm, style, and local fingerprint engines with zero network traffic.</li>
+        <li>Raw audio never leaves your device, and original audio or speech cannot be reconstructed from a one-way ShazamKit signature.</li>
+        <li>Matched song titles are resolved locally against the bundled 18,090-song offline dance catalog and your personal Studio Memory on your phone.</li>
+        <li>When your phone is offline (such as in a basement studio without Wi-Fi), song lookup is skipped automatically and identification runs 100% on-device with zero network requests.</li>
       </ul>
 
-      <h2>3. Local Data Stored on Your Device</h2>
+      <h2>3. Minimal Permissions</h2>
       <p>
-        Your personal dance repertoire—including moves marked <em>✓ Know</em>, pinned <em>★ Tonight</em> steps, custom studio nicknames, bookmarked Studio Memory song overrides (and any local acoustic fingerprints for untitled tracks you bookmark), Leader/Follower role preference, and links to local class videos you attach—is stored strictly on your device in Android’s Room database and synced only between your own paired phone and Wear OS watch via Google Play Services Wearable APIs.
+        The Android phone app requests only three permissions: <code>RECORD_AUDIO</code> (active listening), <code>VIBRATE</code> (optional Beat Bar preview haptics), and <code>INTERNET</code> (optional online ShazamKit signature lookup and YouTube links you choose to open). Pocket Ballroom does <strong>not</strong> request Notification Access (<code>BIND_NOTIFICATION_LISTENER_SERVICE</code>), Location, Contacts, Camera, or background always-on microphone recording.
+      </p>
+      <p>
+        The Wear OS watch app additionally uses standard Wear OS foreground service, wake-lock, and deferred ongoing-activity notification permissions solely to keep the Haptic Beat Coach accurate while your wrist screen dims between songs.
       </p>
 
-      <h2>4. Permissions We Do Not Request</h2>
+      <h2>4. Local Data Stored on Your Device</h2>
       <p>
-        Pocket Ballroom does <strong>not</strong> request Notification Access (<code>BIND_NOTIFICATION_LISTENER_SERVICE</code>), Location, Contacts, Camera, or background always-on microphone recording.
+        Your personal dance repertoire—including moves marked <em>✓ Know</em>, pinned <em>★ Tonight</em> steps, custom studio nicknames, bookmarked studio songs and their local on-device acoustic fingerprints, Timing Sync haptic offset, Leader/Follower role preference, and links to local class videos you attach—is stored locally on your device in Android Room and DataStore and synced only between your own paired phone and Wear OS watch via Google Play Services Wearable APIs.
       </p>
 
-      <h2>5. Optional User-Initiated External Links</h2>
+      <h2>5. Optional User-Initiated External Actions</h2>
       <p>
-        Tapping a saved YouTube demo link or sharing a track from Spotify, YouTube, or Shazam uses standard Android intents handled by those apps under their respective privacy policies.
+        Certain optional actions only occur when you explicitly initiate them:
       </p>
+      <ul>
+        <li><strong>Music App Share &amp; YouTube Clips:</strong> Sharing a track into Pocket Ballroom from Spotify, YouTube, Shazam, or Google Song Search—or tapping a saved YouTube demo link—uses standard Android intents handled by those apps under their respective privacy policies.</li>
+      </ul>
 
       <h2>6. Website &amp; Waitlist Communications</h2>
       <p>
