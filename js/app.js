@@ -4,7 +4,7 @@
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  /* ---------- Interactive Hero v1.6.1 Listen Preview ---------- */
+  /* ---------- Interactive Hero Listen Preview ---------- */
   const DEMO_DANCES = {
     waltz: {
       songTitle: "Can't Help Falling in Love",
@@ -414,13 +414,13 @@
 
   renderHeroDance();
 
-  /* ---------- Interactive Feel Chips, Octave & Studio Memory (Feature 1) ---------- */
+  /* ---------- Interactive Feel Chips, Octave & Studio Memory (Chapter 1) ---------- */
   const FEEL_MAP = {
-    chacha: { badge: "Cha-Cha · 88%", note: "Crisp 4-&-1 syncopation locked" },
-    swung: { badge: "Foxtrot · 72% Likely", note: "Swung jazz groove · Outer Lane" },
-    tango: { badge: "Tango · 84%", note: "Sharp staccato accents · Compact Hold" },
-    latin: { badge: "Rumba · 86%", note: "Smooth romantic Latin box · Slow–Q–Q" },
-    ballad: { badge: "NC 2-Step · 79%", note: "Half-time slow ballad sway" }
+    chacha: { badge: "Cha-Cha · 88%", note: "Crisp Cha-Cha-Cha rhythm" },
+    swung: { badge: "Foxtrot · 72% Likely", note: "Swung jazz groove · Travel" },
+    tango: { badge: "Tango · 84%", note: "Sharp staccato accents · Travel" },
+    latin: { badge: "Rumba · 86%", note: "Smooth Latin box · Slow–Q–Q" },
+    ballad: { badge: "NC 2-Step · 79%", note: "Slow ballad side glide" }
   };
 
   let f1Feel = "chacha";
@@ -438,7 +438,7 @@
     const bpm = f1Octave === 0.5 ? 61 : 122;
     if (feelBadge) feelBadge.textContent = info.badge;
     if (feelNote) feelNote.textContent = `${info.note} · ${bpm} BPM`;
-    if (f1BpmReadout) f1BpmReadout.textContent = `${bpm} BPM · 4/4 · Groove Analysis`;
+    if (f1BpmReadout) f1BpmReadout.textContent = `${bpm} BPM · 4/4`;
   }
 
   document.querySelectorAll("[data-feel]").forEach((chip) => {
@@ -467,7 +467,7 @@
     });
   }
 
-  /* ---------- Interactive Speed & Role Cue Demo (Feature 2) ---------- */
+  /* ---------- Interactive Speed & Role Cue Demo (Chapter 2) ---------- */
   const speedReadout = document.getElementById("speed-readout");
   document.querySelectorAll("[data-speed]").forEach((pill) => {
     pill.addEventListener("click", () => {
@@ -494,21 +494,21 @@
     });
   });
 
-  /* ---------- Interactive Watch Haptic Mode & Training Wheels Demo (Feature 3) ---------- */
+  /* ---------- Interactive Watch Haptic Mode & Training Wheels Demo (Chapter 3) ---------- */
   const WATCH_MODES = {
     steps: {
       title: "Slow · Quick · Quick",
-      sub: "Distinct buzz lengths match your dance timing",
+      sub: "Buzzes match your dance footwork",
       pips: ["is-beat1", "is-slow", "is-accent", "is-accent"]
     },
     beats: {
       title: "1 · 2 · 3 · 4",
-      sub: "Heavy Beat 1 double-thump + light measure ticks",
+      sub: "Strong Beat 1 pulse + measure ticks",
       pips: ["is-beat1", "is-accent", "is-accent", "is-accent"]
     },
     beat1: {
       title: "Beat 1 Only",
-      sub: "Minimal single pulse at the top of each bar",
+      sub: "Single pulse at the top of each bar",
       pips: ["is-beat1", "", "", ""]
     }
   };
@@ -565,20 +565,37 @@
     });
   });
 
-  /* ---------- Mobile Menu Toggle ---------- */
+  /* ---------- Mobile Menu Toggle & Scroll-State Header Fallback ---------- */
+  const siteHeader = document.getElementById("site-header");
   const menuBtn = document.getElementById("mobile-menu-btn");
   const navLinks = document.getElementById("nav-links");
   if (menuBtn && navLinks) {
     menuBtn.addEventListener("click", () => {
       const open = navLinks.classList.toggle("open");
+      if (siteHeader) siteHeader.classList.toggle("menu-open", open);
       menuBtn.setAttribute("aria-expanded", String(open));
     });
     navLinks.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", () => {
         navLinks.classList.remove("open");
+        if (siteHeader) siteHeader.classList.remove("menu-open");
         menuBtn.setAttribute("aria-expanded", "false");
       });
     });
+  }
+
+  if (siteHeader && !CSS.supports("container-type", "scroll-state")) {
+    let lastY = scrollY;
+    window.addEventListener(
+      "scroll",
+      () => {
+        const y = Math.max(0, Math.min(scrollY, document.documentElement.scrollHeight - innerHeight));
+        if (y === lastY) return;
+        siteHeader.classList.toggle("is-hidden", y > lastY && y > siteHeader.offsetHeight);
+        lastY = y;
+      },
+      { passive: true }
+    );
   }
 
   /* ---------- Early Access / Google Play CTA & Native <dialog> Modal ---------- */
@@ -640,7 +657,6 @@
       modal.returnValue = "";
     });
 
-    // Fallback light-dismiss for browsers without <dialog closedby="any"> (e.g., Safari)
     if (!("closedBy" in HTMLDialogElement.prototype)) {
       const outside = (e) => {
         const r = modal.getBoundingClientRect();
