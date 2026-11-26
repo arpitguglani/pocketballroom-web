@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Pocket Ballroom</title>
-  <meta name="description" content="Pocket Ballroom Privacy Policy. Audio is analyzed 100% on your device—never recorded, saved, or uploaded.">
+  <meta name="description" content="Pocket Ballroom Privacy Policy. Raw room audio is never recorded, saved, or uploaded. Minimal permissions: Microphone, Vibration, and Internet.">
   <link rel="canonical" href="https://pocketballroom.com/privacy/">
   <meta name="theme-color" content="#08070C">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -40,60 +40,61 @@
       <div class="container">
         <p class="eyebrow">Privacy Policy</p>
         <h1>Your dance floor stays private.</h1>
-        <p>Last updated: November 25, 2026 · Applies to Pocket Ballroom for Android, Pocket Ballroom for Wear OS, and pocketballroom.com.</p>
+        <p>Last updated: November 26, 2026 · Applies to Pocket Ballroom for Android, Pocket Ballroom for Wear OS, and pocketballroom.com.</p>
       </div>
     </section>
 
     <article class="container prose">
       <div class="summary-box">
-        <strong>The Short Version:</strong> Pocket Ballroom is built offline-first. When you tap <em>Listen</em>, microphone audio is analyzed strictly in temporary memory on your device to estimate BPM, meter, and Beat 1. <strong>We never record, store, or upload your room audio</strong>, and we do not sell personal data or run third-party ad trackers.
+        <strong>The Short Version:</strong> Pocket Ballroom is built offline-first with minimal permissions (<code>RECORD_AUDIO</code>, <code>VIBRATE</code>, and <code>INTERNET</code>—no Notification Access, no account required, no ad trackers). When you tap <em>Listen</em>, <strong>raw room audio is never recorded, saved, or uploaded</strong>. On-device AI analyzes rhythm locally in memory, and optional online song matching sends only a non-reversible one-way acoustic signature.
       </div>
 
-      <h2>1. Microphone Permission (<code>RECORD_AUDIO</code>)</h2>
+      <h2>1. Microphone Permission (<code>RECORD_AUDIO</code>) &amp; On-Device Audio AI</h2>
       <p>
-        Pocket Ballroom requests microphone access solely when you actively start listening to music on your phone or Wear OS watch so the on-device rhythm engine can estimate tempo (BPM), time signature (3/4 vs. 4/4), musical feel, and Beat 1 timing.
+        Pocket Ballroom requests microphone access solely when you actively start listening to music on your phone or Wear OS watch so our on-device neural rhythm and style models can estimate tempo (BPM), time signature (3/4 vs. 4/4), ballroom style, and Beat 1 timing.
       </p>
       <ul>
-        <li>All audio signal processing happens <strong>100% locally on your device</strong> in volatile RAM.</li>
-        <li>Raw audio is <strong>never written to disk, never saved, and never transmitted</strong> to Pocket Ballroom servers or third parties during standard offline listening.</li>
+        <li>All rhythm, beat, and style inference runs <strong>100% locally on your device</strong> in volatile RAM.</li>
+        <li>Raw room audio is <strong>never written to disk, never saved, and never uploaded</strong> to Pocket Ballroom servers or any third party.</li>
         <li>You can stop listening at any time with a single tap, immediately releasing the microphone.</li>
       </ul>
 
-      <h2>2. Optional Notification Access (Android “Now Playing”)</h2>
+      <h2>2. Privacy-Safe Song Identification (Apple ShazamKit)</h2>
       <p>
-        On compatible Android devices (such as Google Pixel phones with offline Now Playing), you may optionally grant Notification Access in Android Settings so Pocket Ballroom can automatically read the song title and artist displayed by the system Now Playing notification and map it to a ballroom dance.
+        When your device has an internet connection and you tap <em>Listen</em>, Pocket Ballroom may convert a brief snippet of the live audio stream on-device into a <strong>non-reversible, one-way mathematical acoustic signature</strong> (via Apple’s ShazamKit SDK) and send only that signature over HTTPS to identify the song title and artist.
       </p>
       <ul>
-        <li>Pocket Ballroom filters strictly for music/Now Playing notifications and ignores personal messages, emails, and other app notifications.</li>
-        <li>Recognized song titles are matched locally against your on-device song catalog and Studio DJ Memory and are never uploaded off your device.</li>
-        <li>You can revoke Notification Access at any time in your Android system settings.</li>
+        <li>Raw audio and voices cannot be reconstructed from a one-way acoustic signature.</li>
+        <li>Matched song titles are looked up locally against Pocket Ballroom’s bundled 18,090-song offline dance catalog and your personal Studio Memory.</li>
+        <li>When offline (no studio Wi-Fi or cell signal), Pocket Ballroom automatically uses its 100% on-device rhythm, style, and local fingerprint engines with zero network traffic.</li>
       </ul>
 
       <h2>3. Local Data Stored on Your Device</h2>
       <p>
-        Your personal dance repertoire—including moves marked <em>✓ Know</em>, pinned <em>★ Tonight</em> steps, custom studio nicknames, Studio DJ Memory song overrides, Leader/Follower role preference, and links to local class videos you attach—is stored locally on your device using Android’s Room database and synced only between your own paired phone and Wear OS watch via Google Play Services Wearable APIs.
+        Your personal dance repertoire—including moves marked <em>✓ Know</em>, pinned <em>★ Tonight</em> steps, custom studio nicknames, bookmarked Studio Memory song overrides (and any local acoustic fingerprints for untitled tracks you bookmark), Leader/Follower role preference, and links to local class videos you attach—is stored strictly on your device in Android’s Room database and synced only between your own paired phone and Wear OS watch via Google Play Services Wearable APIs.
       </p>
 
-      <h2>4. Optional User-Initiated External Actions</h2>
+      <h2>4. Permissions We Do Not Request</h2>
       <p>
-        Certain optional actions only occur when you explicitly tap them:
+        Pocket Ballroom does <strong>not</strong> request Notification Access (<code>BIND_NOTIFICATION_LISTENER_SERVICE</code>), Location, Contacts, Camera, or background always-on microphone recording.
       </p>
-      <ul>
-        <li><strong>YouTube / Music App Links:</strong> Tapping a saved YouTube demo link or sharing a track from Spotify/Shazam opens or receives standard Android intents handled by those apps under their respective privacy policies.</li>
-        <li><strong>Opt-In Cloud Assist (if enabled in Settings):</strong> If you explicitly enable an optional cloud-assisted identification feature in Settings using your own configuration, only that specific user-triggered request is sent over HTTPS. It is disabled by default.</li>
-      </ul>
 
-      <h2>5. Website &amp; Waitlist Communications</h2>
+      <h2>5. Optional User-Initiated External Links</h2>
+      <p>
+        Tapping a saved YouTube demo link or sharing a track from Spotify, YouTube, or Shazam uses standard Android intents handled by those apps under their respective privacy policies.
+      </p>
+
+      <h2>6. Website &amp; Waitlist Communications</h2>
       <p>
         On <code>pocketballroom.com</code>, we do not use third-party advertising cookies or cross-site tracking scripts. If you voluntarily submit your email for Android Beta, iOS Waitlist, or Studio Instructor updates, we use your email solely to send the updates you requested. You may request deletion of your email at any time by writing to <a href="mailto:privacy@pocketballroom.com">privacy@pocketballroom.com</a>.
       </p>
 
-      <h2>6. Children’s Privacy</h2>
+      <h2>7. Children’s Privacy</h2>
       <p>
         Pocket Ballroom is designed for general adult and teen social ballroom dancers and does not knowingly collect personal information from children under 13.
       </p>
 
-      <h2>7. Changes &amp; Contact</h2>
+      <h2>8. Changes &amp; Contact</h2>
       <p>
         If we update this Privacy Policy, we will revise the “Last updated” date at the top of this page. For any privacy questions or data deletion requests, contact us at <a href="mailto:privacy@pocketballroom.com">privacy@pocketballroom.com</a>.
       </p>
