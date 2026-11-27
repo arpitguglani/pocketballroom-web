@@ -40,70 +40,88 @@
       <div class="container">
         <p class="eyebrow">Privacy Policy</p>
         <h1>Your dance floor stays private.</h1>
-        <p>Last updated: November 26, 2026 · Applies to Pocket Ballroom for Android, Pocket Ballroom for Wear OS, and pocketballroom.com.</p>
+        <p>Effective &amp; Last Updated: November 26, 2026 · Applies to Pocket Ballroom (<code>com.pocketballroom.app</code>) for Android, Pocket Ballroom for Wear OS, and pocketballroom.com.</p>
       </div>
     </section>
 
     <article class="container prose">
       <div class="summary-box">
-        <strong>The Short Version:</strong> Pocket Ballroom is built offline-first and privacy-first. When you tap <em>Listen</em>, microphone audio is analyzed in volatile memory by our on-device neural rhythm and style models—<strong>raw room audio is never recorded, saved, or uploaded</strong>. When online, song identification uses compact one-way mathematical signatures via Apple ShazamKit. We do not sell personal data, run ad trackers, or request Notification Access.
+        <strong>The Short Version:</strong> Pocket Ballroom is built <strong>on-device first</strong>. We do not require an account, run advertisements, use ad-tracking or analytics SDKs, or sell your personal data. When you tap <em>Listen</em>, room audio is processed strictly in temporary RAM by our on-device neural rhythm and style models—<strong>raw room audio is never saved or transmitted</strong>. When <strong>Online song lookup</strong> is enabled, only a compact one-way mathematical signature is generated on your device and sent via HTTPS to Apple ShazamKit (with ephemeral Google Play Integrity anti-abuse checks).
       </div>
 
-      <h2>1. Microphone Permission (<code>RECORD_AUDIO</code>)</h2>
+      <h2>1. Microphone Permission &amp; On-Device Audio Processing (<code>RECORD_AUDIO</code>)</h2>
       <p>
         Pocket Ballroom requests microphone access solely when you actively start listening to music on your phone or Wear OS watch so our on-device rhythm and style engines (<code>Beat This!</code> and <code>BallroomStyleNet</code>) can estimate tempo (BPM), time signature (3/4 vs. 4/4), musical groove, and Beat 1 timing.
       </p>
       <ul>
-        <li>All rhythm, Beat 1, and style analysis happens <strong>100% locally on your device</strong> in temporary RAM.</li>
-        <li>When you tap <em>Listen</em> on a paired Wear OS watch, a brief 6-second open-air audio clip is streamed strictly point-to-point over local Bluetooth (<code>Wear OS ChannelClient</code>) to your own paired phone in volatile RAM for local neural analysis and one-way ShazamKit signature lookup—never written to disk and never uploaded as raw audio.</li>
-        <li>Raw room audio is <strong>never written to disk, never recorded, and never uploaded</strong> to Pocket Ballroom servers or third parties.</li>
-        <li>You can stop listening at any time with a single tap, immediately releasing the microphone.</li>
+        <li><strong>100% on-device rhythm &amp; style inference:</strong> Audio captured for beat tracking and ballroom dance classification is processed strictly in volatile memory (RAM) on your device and discarded immediately after inference.</li>
+        <li><strong>Point-to-point watch stream:</strong> When you tap <em>Listen</em> on a paired Wear OS watch, a brief 6-second open-air audio clip is streamed strictly point-to-point over local Bluetooth (<code>Wear OS ChannelClient</code>) to your own paired phone in volatile RAM for local neural analysis and optional one-way ShazamKit signature lookup—never written to disk and never uploaded as raw audio.</li>
+        <li><strong>Zero hidden recording:</strong> Raw microphone audio captured by the live listening engine is <strong>never written to permanent storage</strong> and <strong>never transmitted</strong> to Pocket Ballroom, Apple, Google, or any third party.</li>
+        <li><strong>Optional class recap clips:</strong> If you explicitly choose to film a class recap video step clip inside the app, that recording is stored privately on your device inside app-private storage (<code>filesDir/move_clips/</code>) and is never uploaded automatically.</li>
       </ul>
 
-      <h2>2. Parallel Song Identification (Apple ShazamKit)</h2>
+      <h2>2. Online Song Lookup (Apple ShazamKit)</h2>
       <p>
-        When an internet connection is available during active listening, Pocket Ballroom generates a compact, <strong>one-way mathematical audio signature</strong> locally on your device using Apple ShazamKit to match the song title and artist.
+        When <strong>Online song lookup</strong> is enabled and your device has internet connectivity, Pocket Ballroom uses the <strong>Apple ShazamKit SDK</strong> to identify song titles, artists, and Apple Music metadata.
       </p>
       <ul>
-        <li>Raw audio never leaves your device, and original audio or speech cannot be reconstructed from a one-way ShazamKit signature.</li>
-        <li>Matched song titles are resolved locally against the bundled 18,090-song offline dance catalog and your personal Studio Memory on your phone.</li>
-        <li>When your phone is offline (such as in a basement studio without Wi-Fi), song lookup is skipped automatically and identification runs 100% on-device with zero network requests.</li>
+        <li><strong>Irreversible acoustic signatures only:</strong> Apple ShazamKit's native on-device library (<code>libsigx.so</code>) converts a short window of live audio into a compact, one-way mathematical fingerprint (an acoustic signature) directly on your device. Raw audio or speech cannot be reconstructed from this signature.</li>
+        <li><strong>Data sent to Apple:</strong> Only this irreversible acoustic signature and standard HTTPS request metadata are sent to <strong>Apple Inc.'s ShazamKit service</strong> under the <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a>. Matched titles are resolved locally against the bundled 18,090-song offline dance catalog and your personal Studio Memory.</li>
+        <li><strong>Apple Music links:</strong> When Shazam identifies a song, Pocket Ballroom may show an Apple Music link button beside the track. Tapping that link opens Apple Music in an external app or browser governed by Apple's terms and privacy policy.</li>
+        <li><strong>Easy opt-out &amp; offline mode:</strong> You can turn off online song recognition anytime in <strong>Settings → Online song lookup</strong>. When disabled or offline, Pocket Ballroom sends no audio signatures and continues identifying dance styles, BPM, and beats completely on-device.</li>
       </ul>
 
-      <h2>3. Minimal Permissions</h2>
+      <h2>3. Token Vending &amp; Anti-Abuse Verification (Google Play Integrity API)</h2>
       <p>
-        The Android phone app requests only three permissions: <code>RECORD_AUDIO</code> (active listening), <code>VIBRATE</code> (optional Beat Bar preview haptics), and <code>INTERNET</code> (optional online ShazamKit signature lookup and YouTube links you choose to open). Pocket Ballroom does <strong>not</strong> request Notification Access (<code>BIND_NOTIFICATION_LISTENER_SERVICE</code>), Location, Contacts, Camera, or background always-on microphone recording.
-      </p>
-      <p>
-        The Wear OS watch app additionally uses standard Wear OS foreground service, wake-lock, and deferred ongoing-activity notification permissions solely to keep the Haptic Beat Coach accurate while your wrist screen dims between songs.
-      </p>
-
-      <h2>4. Local Data Stored on Your Device</h2>
-      <p>
-        Your personal dance repertoire—including moves marked <em>✓ Know</em>, pinned <em>★ Tonight</em> steps, custom studio nicknames, bookmarked studio songs and their local on-device acoustic fingerprints, Timing Sync haptic offset, Leader/Follower role preference, and links to local class videos you attach—is stored locally on your device in Android Room and DataStore and synced only between your own paired phone and Wear OS watch via Google Play Services Wearable APIs.
-      </p>
-
-      <h2>5. Optional User-Initiated External Actions</h2>
-      <p>
-        Certain optional actions only occur when you explicitly initiate them:
+        To access Apple ShazamKit without embedding permanent signing credentials in the app, Pocket Ballroom retrieves short-lived (24-hour) developer tokens from our stateless Cloudflare Worker token service only when <strong>Online song lookup</strong> needs a token:
       </p>
       <ul>
-        <li><strong>Music App Share &amp; YouTube Clips:</strong> Sharing a track into Pocket Ballroom from Spotify, YouTube, Shazam, or Google Song Search—or tapping a saved YouTube demo link—uses standard Android intents handled by those apps under their respective privacy policies.</li>
+        <li><strong>Information processed ephemerally:</strong> A one-time <strong>Google Play Integrity API</strong> attestation token verifying your app is a genuine Google Play install (governed by the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>), a random app-generated <code>installId</code> UUID (not your Google account, phone number, IMEI, or Android Advertising ID), package identifier (<code>com.pocketballroom.app</code>), app version, cryptographic request nonce, and transient client IP address.</li>
+        <li><strong>Purpose &amp; auto-expiry:</strong> Used exclusively to prevent API abuse, enforce per-install daily and per-IP hourly rate limits, and issue a 24-hour token over HTTPS. Rate-limit counters expire automatically within 1 hour (IP) and 24 hours (<code>installId</code>); no user profiles or cross-app tracking exist.</li>
       </ul>
 
-      <h2>6. Website &amp; Waitlist Communications</h2>
+      <h2>4. Minimal Permissions</h2>
       <p>
-        On <code>pocketballroom.com</code>, we do not use third-party advertising cookies or cross-site tracking scripts. If you voluntarily submit your email for Android Beta, iOS Waitlist, or Studio Instructor updates, we use your email solely to send the updates you requested. You may request deletion of your email at any time by writing to <a href="mailto:privacy@pocketballroom.com">privacy@pocketballroom.com</a>.
+        The Android phone app requests only three permissions: <code>RECORD_AUDIO</code> (active listening), <code>VIBRATE</code> (Beat Bar preview haptics), and <code>INTERNET</code> (only when <strong>Online song lookup</strong> is enabled, for 24-hour Play Integrity token vending and one-way ShazamKit signature matching). Pocket Ballroom does <strong>not</strong> request Notification Access (<code>BIND_NOTIFICATION_LISTENER_SERVICE</code>), Location, Contacts, Camera, or background always-on microphone recording.
+      </p>
+      <p>
+        The Wear OS companion app uses standard Wear OS foreground service, wake-lock, and ongoing-activity permissions solely to keep the Haptic Beat Coach accurate while your wrist screen dims between songs.
       </p>
 
-      <h2>7. Children’s Privacy</h2>
+      <h2>5. Local Data Stored on Your Device &amp; Deletion</h2>
       <p>
-        Pocket Ballroom is designed for general adult and teen social ballroom dancers and does not knowingly collect personal information from children under 13.
+        Your personal dance repertoire—including moves marked <em>✓ Know</em>, pinned <em>★ Tonight</em> steps, custom studio nicknames, bookmarked songs and local acoustic fingerprints, danced-song history logs, Timing Sync haptic offset, Leader/Follower role preference, and personal class recap clips you choose to attach—is stored locally on your device in Android Room and DataStore and synced only between your own paired phone and Wear OS watch via Google Play Services Wearable APIs. None of this data is uploaded to Pocket Ballroom servers.
+      </p>
+      <ul>
+        <li><strong>Delete data anytime:</strong> Delete individual songs, steps, or class recap clips inside the app, clear all data via Android <strong>Settings → Apps → Pocket Ballroom → Storage &amp; cache → Clear storage</strong>, or uninstall the app. Standard Android system backup settings apply if enabled on your device.</li>
+      </ul>
+
+      <h2>6. Optional User-Initiated External Actions</h2>
+      <ul>
+        <li><strong>Music App Share &amp; Links:</strong> Sharing a track into Pocket Ballroom from Spotify, YouTube, Shazam, or Google Song Search—or tapping a saved YouTube demo or Apple Music link—uses standard Android intents handled by those apps under their respective privacy policies.</li>
+      </ul>
+
+      <h2>7. Website &amp; Waitlist Communications</h2>
+      <p>
+        On <code>pocketballroom.com</code>, we do not use third-party advertising cookies or cross-site tracking scripts. If you voluntarily submit your email for Android Beta, iOS Waitlist, or Studio Instructor updates, we use your email solely to send the updates you requested. You may request deletion at any time by writing to <a href="mailto:privacy@pocketballroom.com">privacy@pocketballroom.com</a>.
       </p>
 
-      <h2>8. Changes &amp; Contact</h2>
+      <h2>8. Children’s Privacy</h2>
       <p>
-        If we update this Privacy Policy, we will revise the “Last updated” date at the top of this page. For any privacy questions or data deletion requests, contact us at <a href="mailto:privacy@pocketballroom.com">privacy@pocketballroom.com</a>.
+        Pocket Ballroom is a general-audience utility for ballroom dancers and is not directed to children under 13 (or the applicable age of digital consent in your jurisdiction). We do not knowingly collect personal information from children.
+      </p>
+
+      <h2>9. Changes, Contact &amp; Attribution</h2>
+      <p>
+        When we update this Privacy Policy, we revise the date at the top of this page and publish the updated policy at <a href="https://pocketballroom.com/privacy/">https://pocketballroom.com/privacy/</a>.
+      </p>
+      <ul>
+        <li><strong>Developer:</strong> Pocket Ballroom (Arpit Guglani)</li>
+        <li><strong>Privacy Contact:</strong> <a href="mailto:privacy@pocketballroom.com">privacy@pocketballroom.com</a></li>
+        <li><strong>Support:</strong> <a href="https://pocketballroom.com/support/">https://pocketballroom.com/support/</a></li>
+      </ul>
+      <p>
+        <small>Apple, Apple Music, and Shazam are trademarks of Apple Inc., registered in the U.S. and other countries.</small>
       </p>
     </article>
   </main>
